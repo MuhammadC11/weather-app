@@ -24,6 +24,10 @@
     v-show="data_loaded"
     :clouds="clouds_url"
     :loaded="data_loaded"
+    :temper="temperature"
+    :feels="feels"
+    :max="max"
+    :min="min"
   />
 </template>
 
@@ -39,6 +43,10 @@ export default {
       wData: [],
       clouds_url: "",
       data_loaded: false,
+      temperature: null,
+      feels: null,
+      max: null,
+      min: null,
     };
   },
   methods: {
@@ -67,13 +75,21 @@ export default {
           } else {
             this.data_loaded = true;
           }
+          var ftemp = (this.wData.temp * 9) / 5 + 32;
+          var ffeel = (this.wData.feels_like * 9) / 5 + 32;
+          var fmax = (this.wData.max_temp * 9) / 5 + 32;
+          var fmin = (this.wData.min_temp * 9) / 5 + 32;
+          this.max = Math.round(fmax);
+          this.min = Math.round(fmin);
+          this.feels = Math.round(ffeel);
+          this.temperature = Math.round(ftemp);
+          console.log(this.temperature);
+          console.log(this.feels);
+          console.log(this.max);
+          console.log(this.min);
         });
     },
-    convertTemp() {
-      var faranheit = (this.wData.temp * 9) / 5 + 32;
-      this.temperature = faranheit;
-      console.log(this.temperature);
-    },
+
     clearApi() {
       this.wData = [];
       this.cityInput = "";
@@ -149,17 +165,51 @@ export default {
   justify-content: center;
   width: 100%;
 }
+
 .search-btn {
-  color: #ffffff;
-  font-size: 4rem;
-  border-radius: 10rem;
-}
-.clear-btn {
   color: #ffffff;
   font-size: 2rem;
   border-radius: 1rem;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
+  padding: 1rem;
+
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(39, 38, 38, 0.979);
+  margin: auto;
 }
+.submit-btn {
+  // create a hover effect that makes the button a little bit bigger and darker
+  background-color: rgba(39, 38, 38, 0.979);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.submit-btn:hover {
+  // create a hover effect that makes the button a little bit bigger and darker
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+.clear-btn {
+  font-size: 1.5rem;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+  padding: 1rem;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 1.2rem;
+  font-weight: 700;
+  transition: transform 200ms, background 200ms;
+}
+.clear-btn:hover {
+  // create a hover effect that makes the button a little bit bigger and darker
+
+  transform: translateY(-2px);
+}
+.clear-btn:focus-visible {
+  outline: 1px solid #000;
+  outline-offset: 1px;
+}
+
 .item {
   display: flex;
   align-items: center;

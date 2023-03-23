@@ -3,12 +3,10 @@
     <h2 class="cityName">{{ city }}</h2>
     <!-- create a div that uses v show when there is a value for cities -->
     <img :src="clouds" alt="clouds" class="cloud_img" />
-    <h2 class="current_temperature">{{ weatherData.temp }} ºC</h2>
+    <h2 class="current_temperature">{{ temper }} ºF</h2>
 
-    <p class="temperature">Feels Like: {{ weatherData.feels_like }} ºC</p>
-    <p class="temperature">
-      H:{{ weatherData.max_temp }} ºC/ L: {{ weatherData.min_temp }}
-    </p>
+    <p class="temperature">Feels Like: {{ feels }} ºF</p>
+    <p class="temperature">H:{{ max }} ºF/ L: {{ min }} ºF</p>
 
     <!-- weatherData.temp, weatherData.min_temp, weatherData.max_temp, weatherData.feels_like, weatherData.humidity -->
   </div>
@@ -16,7 +14,16 @@
 
 <script>
 export default {
-  props: ["weatherData", "city", "temper", "clouds", "loaded"],
+  props: [
+    "weatherData",
+    "city",
+    "temper",
+    "clouds",
+    "loaded",
+    "feels",
+    "max",
+    "min",
+  ],
   data() {
     return {
       faranheit: this.weatherData.temp,
