@@ -58,7 +58,7 @@ export default {
           } else if (this.wData.cloud_pct < 50) {
             this.clouds_url =
               "https://res.cloudinary.com/lowballd/image/upload/v1679531053/DEV/partly-sunny-outline-svgrepo-com_kc0qso.svg";
-          } else if (this.wData.cloud_pct < 100) {
+          } else if (this.wData.cloud_pct <= 100) {
             this.clouds_url =
               "https://res.cloudinary.com/lowballd/image/upload/v1679531413/DEV/cloudy-svgrepo-com_krf9mz.svg";
           }
