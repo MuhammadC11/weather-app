@@ -15,6 +15,7 @@
         </button>
         <button class="clear-btn" @click="clearApi()">Clear</button>
       </div>
+      <div class="error" v-if="error">Error: {{ error }}</div>
     </form>
   </div>
 
@@ -60,14 +61,16 @@ export default {
         .then((response) => {
           this.wData = response.data;
           console.log(this.wData);
+          let clouds_url = "";
+
           if (this.wData.cloud_pct < 25) {
-            this.clouds_url =
+            clouds_url =
               "https://res.cloudinary.com/lowballd/image/upload/v1679530120/DEV/sunny-svgrepo-com_xx5xpn.svg";
           } else if (this.wData.cloud_pct < 50) {
-            this.clouds_url =
+            clouds_url =
               "https://res.cloudinary.com/lowballd/image/upload/v1679531053/DEV/partly-sunny-outline-svgrepo-com_kc0qso.svg";
           } else if (this.wData.cloud_pct <= 100) {
-            this.clouds_url =
+            clouds_url =
               "https://res.cloudinary.com/lowballd/image/upload/v1679531413/DEV/cloudy-svgrepo-com_krf9mz.svg";
           }
           if (this.wData == []) {

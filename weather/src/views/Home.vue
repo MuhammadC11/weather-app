@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/forest.jpg" alt="" />
+    <img class="bgimg" src="../assets/forest.jpg" alt="" />
     <Title />
     <SearchBar />
   </div>
@@ -12,7 +12,7 @@ import SearchBar from "../components/SearchBar.vue";
 </script>
 
 <style lang="scss" scoped>
-img {
+.bgimg {
   position: absolute;
   top: 0;
   left: 0;
